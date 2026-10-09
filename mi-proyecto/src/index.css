@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #07080f;
+  --bg-2: #0d0f1f;
+  --surface: #0f111b;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --text: #f3f4f9;
+  --muted: #8d92ab;
+  --dim: #5f647d;
+  --primary: #6c5ce7;
+  --primary-2: #8b7bff;
+  --grad: linear-gradient(135deg, #6f5cf6, #8a5cf6);
+  --green: #10d9a0;
+  --amber: #f5b301;
+  --violet: #a78bfa;
+  --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; }
+button:disabled { cursor: not-allowed; }
+ul { list-style: none; padding: 0; }
+svg { display: block; flex-shrink: 0; }
+select option { background: #12141f; color: var(--text); }
+:focus-visible { outline: 2px solid var(--primary-2); outline-offset: 2px; }
+
+.container { width: min(1216px, 100% - 40px); margin-inline: auto; }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 40px; padding: 0 18px; border-radius: 10px;
+  font-size: 14px; font-weight: 600; white-space: nowrap;
+  transition: filter 0.15s, background 0.15s, border-color 0.15s;
+}
+.btn--primary { background: var(--grad); color: #fff; }
+.btn--primary:hover:not(:disabled) { filter: brightness(1.12); }
+.btn--primary:disabled { filter: saturate(0.4) brightness(0.8); }
+.btn--ghost { background: rgba(255, 255, 255, 0.06); border: 1px solid var(--line-strong); color: var(--text); }
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.1); }
+.btn--lg { height: 44px; padding: 0 22px; }
+.btn--block { width: 100%; }
+
+/* ---------- Píldoras y chips ---------- */
+.pill {
+  padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 500;
+  color: var(--muted); border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03);
+  transition: color 0.15s, border-color 0.15s;
+}
+.pill:hover { color: var(--text); border-color: var(--line-strong); }
+.pill.is-active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 600; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 7px;
+  font-size: 11px; font-weight: 500; white-space: nowrap;
+  color: var(--muted); background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line);
+}
+.chip--salary { font-family: var(--mono); color: var(--green); background: rgba(16, 217, 160, 0.08); border-color: rgba(16, 217, 160, 0.28); }
+.chip--indefinido { color: var(--green); background: rgba(16, 217, 160, 0.08); border-color: rgba(16, 217, 160, 0.28); }
+.chip--fijo { color: var(--amber); background: rgba(245, 179, 1, 0.08); border-color: rgba(245, 179, 1, 0.3); }
+.chip--temporal { color: #9d8cff; background: rgba(124, 108, 255, 0.1); border-color: rgba(124, 108, 255, 0.35); }
+.chip--servicios { color: #5cc8ff; background: rgba(92, 200, 255, 0.08); border-color: rgba(92, 200, 255, 0.3); }
+
+.badge-top {
+  flex-shrink: 0; padding: 2px 7px; border-radius: 6px; font-size: 10px; font-weight: 700;
+  color: var(--amber); background: rgba(245, 179, 1, 0.08); border: 1px solid rgba(245, 179, 1, 0.4);
+}
+.badge-green {
+  padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 600;
+  color: var(--green); background: rgba(16, 217, 160, 0.1); border: 1px solid rgba(16, 217, 160, 0.3);
+}
+
+/* ---------- Tipografía de apoyo ---------- */
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+.eyebrow--violet { color: var(--primary-2); }
+.eyebrow--green { color: var(--green); }
+
+.avatar {
+  width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center;
+  border-radius: 12px; font-size: 14px; font-weight: 800; color: #fff;
+}
+.avatar--lg { width: 56px; height: 56px; font-size: 17px; border-radius: 14px; }
+
+/* ---------- Tarjetas y rejillas ---------- */
+.card {
+  display: flex; flex-direction: column; gap: 16px; padding: 20px;
+  border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+  transition: border-color 0.2s;
+}
+a.card:hover, .card.job:hover { border-color: rgba(139, 123, 255, 0.45); }
+
+.grid { display: grid; gap: 16px; }
+.grid--4 { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 1000px) { .grid--3 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) { .grid--3, .grid--2 { grid-template-columns: 1fr; } }
+
+.empty {
+  display: grid; justify-items: center; gap: 16px; padding: 56px 20px; text-align: center;
+  color: var(--muted); border: 1px dashed var(--line-strong); border-radius: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
