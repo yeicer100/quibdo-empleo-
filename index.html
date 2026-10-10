@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personajes de Gravity Falls</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Personajes de Gravity Falls</h1>
+    
+    
+    <div class="filters">
+      <button class="filter-btn active" data-species="all">Todos</button>
+      <button class="filter-btn" data-species="Humano">Humanos</button>
+      <button class="filter-btn" data-species="Demonio del sueño">Demonios</button>
+      <button class="filter-btn" data-species="Animal">Animales</button>
+    </div>
+  </header>
+
+  
+  <div id="character-container" class="container"></div>
+
+  <script>
+    let allCharacters = [];
+
+   
+    async function fetchCharacters() {
+      try {
+        const response = await fetch('http://localhost:3000/api/characters');
+        allCharacters = await response.json();
+        renderCharacters(allCharacters);
+      } catch (error) {
+        console.error('Error al cargar los personajes:', error);
+      }
+    }
+
+    
+    function renderCharacters(characters) {
+      const container = document.getElementById('character-container');
+      container.innerHTML = '';
+
+      characters.forEach(char => {
+        const card = document.createElement('div');
+        card.className = 'character-card';
+
+        
+        let statusClass = 'unknown';
+        if (char.status === 'Vivo') statusClass = 'alive';
+        else if (char.status === 'Muerto') statusClass = 'dead';
+
+        card.innerHTML = `
+          <img src="${char.image}" alt="${char.name}" class="character-img">
+          <div class="character-info">
+            <div>
+              <h2 class="name">${char.name}</h2>
+              <div class="status">
+                <span class="status-icon ${statusClass}"></span>
+                ${char.status} - ${char.species}
+              </div>
+            </div>
+
+            <div class="section">
+              <span class="text-gray">Última ubicación conocida:</span>
+              <span class="location">${char.location}</span>
+            </div>
+
+            <div class="section">
+              <span class="text-gray">Primera aparición en:</span>
+              <span class="location">${char.firstSeen}</span>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remover clase active de todos los botones
+        buttons.forEach(btn => btn.classList.remove('active'));
+        // Agregar clase active al botón presionado
+        button.classList.add('active');
+
+        const selectedSpecies = button.getAttribute('data-species');
+
+        if (selectedSpecies === 'all') {
+          renderCharacters(allCharacters);
+        } else {
+          // Filtrar el arreglo según la especie (coincidencia parcial para incluir combinaciones como "Humano / Mantenimiento")
+          const filtered = allCharacters.filter(char => char.species.includes(selectedSpecies));
+          renderCharacters(filtered);
+        }
+      });
+    });
+
+    // Iniciar la carga
+    fetchCharacters();
+  </script>
+</body>
+</html>

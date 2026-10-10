@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentacion de la API - Gravity Falls</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .endpoint { background: #e8f4fd; border-left: 5px solid #3498db; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        code { background: #2d3748; color: #63b3ed; padding: 2px 6px; border-radius: 4px; }
+        pre { background: #2d3748; color: #fff; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Documentacion de la API de Gravity Falls</h1>
+        <p>Bienvenido a la documentacion oficial de la API del proyecto escolar. Aqui puedes consultar los endpoints disponibles.</p>
+        
+        <div class="endpoint">
+            <h3>GET /api/characters</h3>
+            <p><strong>Descripcion:</strong> Retorna la lista completa de todos los personajes de Gravity Falls con sus detalles.</p>
+            <p><strong>URL de prueba:</strong> <a href="http://localhost:3000/api/characters" target="_blank">http://localhost:3000/api/characters</a></p>
+            <p><strong>Ejemplo de respuesta (JSON):</strong></p>
+            <pre>
+[
+  {
+    "id": 1,
+    "name": "Dipper Pines",
+    "status": "Vivo",
+    "species": "Humano",
+    "location": "Gravity Falls, Oregon",
+    "firstSeen": "Trampa para turistas",
+    "image": "..."
+  }
+]
+            </pre>
+        </div>
+    </div>
+</body>
+</html>
