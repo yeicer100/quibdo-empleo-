@@ -5,10 +5,15 @@ const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
-
+app.use(express.static(path.join(__dirname)));
 app.use(cors());
 app.use(express.json());
 
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+ 
 app.get('/documentacion', (req, res) => {
   res.send(`
     <!DOCTYPE html>
